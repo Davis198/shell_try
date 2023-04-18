@@ -3,12 +3,12 @@
 /**
  * hsh - main shell loop
  * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * @mv: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
  */
 
-int hsh(info_t *info, char **av)
+int hsh(info_t *info, char **mv)
 {
 	ssize_t r = 0;
 	int builtin_ret = 0;
@@ -22,7 +22,7 @@ int hsh(info_t *info, char **av)
 		r = get_input(info);
 		if (r != -1)
 		{
-			set_info(info, av);
+			set_info(info, mv);
 			builtin_ret = find_builtin(info);
 			if (builtin_ret == -1)
 				find_cmd(info);
@@ -87,7 +87,7 @@ int find_builtin(info_t *info)
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
-	int i, k;
+	int i, n;
 
 	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
@@ -95,10 +95,10 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
+	for (i = 0, n = 0; info->arg[i]; i++)
 		if (!is_delim(info->arg[i], " \t\n"))
-			k++;
-	if (!k)
+			n++;
+	if (!n)
 		return;
 
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
