@@ -111,13 +111,13 @@ typedef struct builtin
 } builtin_table;
 
 
-/* toem_shloop.c */
+/* toem_shtoken.c */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
-/* toem_parser.c */
+/* toem_passer.c */
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
@@ -125,19 +125,19 @@ char *find_path(info_t *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
+/* toem_err.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* toem_string.c */
+/* toem_str.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* toem_string1.c */
+/* toem_str1.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
@@ -148,7 +148,7 @@ char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
-/* toem_tokenizer.c */
+/* toem_token.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
@@ -157,7 +157,7 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_real(void *, unsigned int, unsigned int);
 
-/* toem_memory.c */
+/* toem_mem.c */
 int dfree(void **);
 
 /* toem_atoi.c */
@@ -225,7 +225,7 @@ size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
-/* toem_vars.c */
+/* toem_mass.c */
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
